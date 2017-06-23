@@ -215,17 +215,26 @@ def download_pin(pin, path):
             image_data = response.read()
     except HTTPError:
         # Sometimes an URL has .jpg extension while the image is
-        # actually PNG, resulting in 403 error.
+        # actually in PNG, WEBP, and probably other formats,
+        # resulting in 403 error.
         base, ext = os.path.splitext(image_url)
         if ext not in ('.jpg', '.jpeg'):
             raise
 
-        image_url = base + '.png'
-        with urllib.request.urlopen(image_url) as response:
-            image_data = response.read()
-        logging.debug(
-            'Pin %s URL extension corrected from %s to .png',
-            pin['id'], ext)
+        for correct_ext in ('.png', '.webp', '.gif'):
+            image_url = base + correct_ext
+            try:
+                with urllib.request.urlopen(image_url) as response:
+                    image_data = response.read()
+            except HTTPError:
+                pass
+            else:
+                logging.debug(
+                    'Pin %s URL extension corrected from %s to %s',
+                    pin['id'], ext, correct_ext)
+                break
+        else:
+            raise
 
     image_ext = os.path.splitext(image_url)[1]
 
