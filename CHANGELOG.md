@@ -1,4 +1,9 @@
 
+## 1.1.2 (2017-06-23)
+
+* Handle more wrong image URL extensions (#3)
+
+
 ## 1.1.1 (2017-04-28)
 
 * Added a workaround for wrong image URLs resulting in 403 HTTP
