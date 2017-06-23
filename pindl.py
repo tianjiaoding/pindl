@@ -426,7 +426,7 @@ def parse_args():
               * .pin_token file in your home directory
 
             On Windows, don\'t forget to enable UTF-8 in your command prompt
-            before using pindl:
+            if your Python is older than 3.6.0:
               chcp 65001
             Or set PYTHONIOENCODING environment variable instead:
               set PYTHONIOENCODING=UTF-8
