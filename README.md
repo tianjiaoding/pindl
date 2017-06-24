@@ -43,10 +43,10 @@ For convenience, pindl applies the following conversions to each file name:
 The Pinterset API splits bard into pages, up to 100 pins per page. The
 number of API calls per hour is limited to 1000. These means that you
 can download up to 100 000 images per hour. The actual number depends
-on how many board you download and how many pins each one contains:
+on how many boards you download and how many pins each one contains:
 the program makes an additional API call for each board to retrieve its
 information (the total number of pins, author's name, etc.), and an
-extra call for "all" to get a list of your public boards. Enabling
+extra call for "all" to get the list of your public boards. Enabling
 `-d, --debug` option will allow you to see the current rate limit.
 
 To keep track of downloaded pages, pindl saves the cursor to the next
