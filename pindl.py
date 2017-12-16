@@ -51,6 +51,13 @@ _NOTE_LIMIT = 50
 _PINS_PER_PAGE = 100  # The maximum is 100
 
 
+def get_app_dir():
+    if hasattr(sys, 'frozen'):
+        return os.path.dirname(sys.executable)
+    else:
+        return os.path.dirname(os.path.realpath(__file__))
+
+
 _FILENAME_TRANS = str.maketrans('\\/"', '--\'', '<>:|?*')
 
 
@@ -484,10 +491,8 @@ def main():
         access_token = ''
         for file_name in (
                 _TOKEN_FILE,
-                os.path.join(
-                    os.path.dirname(os.path.realpath(__file__)), _TOKEN_FILE),
-                os.path.join(
-                    os.path.expanduser('~'), '.' + _TOKEN_FILE)):
+                os.path.join(get_app_dir(), _TOKEN_FILE),
+                os.path.join(os.path.expanduser('~'), '.' + _TOKEN_FILE)):
             try:
                 with open(file_name, 'r') as f:
                     for line in (l.strip() for l in f):
