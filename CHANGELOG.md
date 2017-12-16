@@ -1,4 +1,11 @@
 
+## 1.1.3 (2017-12-16)
+
+* Added support for PyInstaller and hopefully other freezing tools.
+  The stand-alone EXE for Windows is now available at
+  https://github.com/danpla/pindl/releases.
+
+
 ## 1.1.2 (2017-06-23)
 
 * Handle more wrong image URL extensions (#3)
