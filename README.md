@@ -1,7 +1,14 @@
 # Pinterest board downloader
 
-Pindl is a simple Python 3 program to download images from Pinterest
-boards.
+Pindl is a simple program to download images from Pinterest boards.
+
+Windows users can download a stand-alone executable from the
+[Releases page][latest release]. On other
+platforms, you'll need [Python 3](https://www.python.org/) installed
+(read [Python Setup and Usage][]).
+
+Pindl is a command-line program. Run it with `--help` argument to see
+the available options.
 
 
 ## Access token
@@ -15,7 +22,7 @@ Pindl will search for your token in the following places
 
 * `-a, --access-token` argument
 * `pin_token` file in the current working directory
-* `pin_token` file in the same directory as `pindl.py`
+* `pin_token` file in the same directory as pindl
 * `.pin_token` file in your home directory
 
 
@@ -33,8 +40,8 @@ is already saved, the program will just update the `{pin_description}`.
 
 For convenience, pindl applies the following conversions to each file name:
 
-* The whole file name is converted to lowercase.
-* All spaces (including multiple occurrences) replaced by an underscore.
+* The file name is converted to lowercase.
+* All spaces (including multiple occurrences) are replaced by an underscore.
 * `{pin_description}` is limited to 50 characters.
 
 
@@ -43,16 +50,16 @@ For convenience, pindl applies the following conversions to each file name:
 The Pinterset API splits bard into pages, up to 100 pins per page. The
 number of API calls per hour is limited to 1000. These means that you
 can download up to 100 000 images per hour. The actual number depends
-on how many boards you download and how many pins each one contains:
+on how many boards you download and how many pins they contain:
 the program makes an additional API call for each board to retrieve its
 information (the total number of pins, author's name, etc.), and an
-extra call for "all" to get the list of your public boards. Enabling
-`-d, --debug` option will allow you to see the current rate limit.
+extra call for "all" to get the list of your public boards. You can
+enable `-d, --debug` option to see your rate limit.
 
 To keep track of downloaded pages, pindl saves the cursor to the next
 page and the number of downloaded pages in a
-`{user_name}/{board_name}.json` file. If the downloading will be
-interrupted (manually or due to errors, like exceeding the rate limit),
+`{user_name}/{board_name}.json` file. If the downloading is interrupted
+(manually or due to errors, like exceeding the rate limit),
 the program will automatically load the cursor from this file and
 continue downloading from the last page.
 
@@ -69,11 +76,11 @@ For more information, visit [the API documentation][API]:
 
 ## Usage notes
 
-* As of 12.2015, the Pinterest API does not provide access to secret
-  boards, so you need to make them temporarily public to download.
+*   As of 12.2015, the Pinterest API does not provide access to secret
+    boards, so you need to make them temporarily public to download.
 
-* On Windows, don't forget to set UTF-8 in your command prompt if your
-  Python is older than 3.6.0:
+*   On Windows, don't forget to set UTF-8 in your command prompt if your
+    Python is older than 3.6:
 
         chcp 65001
 
@@ -81,5 +88,10 @@ For more information, visit [the API documentation][API]:
 
         set PYTHONIOENCODING=UTF-8
 
+    The [stand-alone executable][latest release] doesn't need this trick,
+    since version 3.6 (or newer) is built into it.
+
 
 [API]: https://developers.pinterest.com/docs/api/overview/ "Pinterest API"
+[latest release]: https://github.com/danpla/pindl/releases/latest
+[Python Setup and Usage]: https://docs.python.org/3/using/index.html
